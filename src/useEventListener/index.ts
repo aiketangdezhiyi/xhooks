@@ -18,10 +18,10 @@ export const useEventListener = (
       fnRef.current.call(target, e);
     };
 
-    target.addEventListener(eventName, handle, restOpt);
+    target?.addEventListener(eventName, handle, restOpt);
 
     return () => {
-      target.removeEventListener(eventName, handle, {
+      target?.removeEventListener(eventName, handle, {
         capture: options.capture,
       });
     };
