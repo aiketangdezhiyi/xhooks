@@ -1,6 +1,6 @@
 {
   "private": false,
-  "name": "xhooks",
+  "name": "xshooks",
   "description": "简化ahooks源码方便进行学习",
   "version": "1.0.0",
   "author": "xs",
