@@ -9,8 +9,11 @@ export * from './useEventListener';
 
 // 自己封装的hook
 export * from './useCounterControl';
+export * from './useRowVirtualList';
+export * from './useColVirtualList';
 export * from './useForce';
 export * from './useWindowResize';
+export * from './useLazyLoad';
 
 export const isBrowser = !!(
   typeof window !== 'undefined' &&

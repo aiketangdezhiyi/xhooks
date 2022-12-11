@@ -6,7 +6,7 @@ import { useMount, useDebounceFn, isBrowser } from '../';
  * @param debounceTime 防抖时间
  */
 export const useWindowResize = (func: Function, debounceTime?: number) => {
-  const { run } = useDebounceFn(useDebounceFn, {
+  const { run } = useDebounceFn(func, {
     wait: debounceTime,
   });
 
