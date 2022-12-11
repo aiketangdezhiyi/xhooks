@@ -2,7 +2,7 @@
   "private": false,
   "name": "xshooks",
   "description": "简化ahooks源码方便进行学习",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "author": "xs",
   "license": "MIT",
   "keywords": [
@@ -47,7 +47,7 @@
     "antd": "^4.24.5",
     "classnames": "^2.3.2",
     "react": "^18.0.0",
-    "yuxuannnn_utils": "^1.1.1"
+    "yuxuannnn_utils": "^1.1.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.15.1",
