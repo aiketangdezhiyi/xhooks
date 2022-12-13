@@ -2,7 +2,7 @@
   "private": false,
   "name": "xshooks",
   "description": "简化ahooks源码方便进行学习",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "xs",
   "license": "MIT",
   "keywords": [

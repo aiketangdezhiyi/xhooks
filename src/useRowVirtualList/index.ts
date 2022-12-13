@@ -2,9 +2,12 @@ import { ReactNode, useMemo } from 'react';
 import { boundaryMax, boundaryMin } from 'yuxuannnn_utils';
 
 export type virtualListType = {
-  startIdx: number; // 起始渲染的元素的索引
-  endIdx: number; // 最终渲染元素的索引
-  startDomLeft: number; // 其实元素的偏离位置
+  /** 起始渲染的元素的索引 */
+  startIdx: number;
+  /** 最终渲染元素的索引 */
+  endIdx: number; //
+  /** 起始元素的偏离位置 */
+  startDomLeft: number;
 };
 
 /**
@@ -46,44 +49,23 @@ export function useRowVirtualList<T = any>(
     left: number;
   },
 ) {
-  const allVirtualList = useRowOriginVirtualList(originList, renderItem, options);
-
   return useMemo(() => {
-    const { startIdx, endIdx } = getTransverseVirtualListInfo(
+    const { startIdx, endIdx, startDomLeft } = getTransverseVirtualListInfo(
       options.width,
       options.left,
       options.containerWidth,
       originList.length,
     );
-    return allVirtualList.slice(startIdx, endIdx + 1);
-  }, [allVirtualList, options.width, options.left, options.containerWidth]);
-}
-
-/**
- * 获取所有
- * @param originList
- * @param renderItem
- * @param options
- * @returns
- */
-export function useRowOriginVirtualList<T = any>(
-  originList: T[],
-  renderItem: (params: { origin: T; left: number; idx: number }) => ReactNode,
-  options: {
-    /** 每一个元素的宽度 */
-    width: number;
-    /** 容器元素展示区域的宽度 */
-    containerWidth: number;
-  },
-): ReactNode[] {
-  const memoList = useMemo(() => {
-    return originList.map((it, i) =>
-      renderItem({
-        origin: it,
-        left: options.width * i,
-        idx: i,
-      }),
-    );
-  }, [originList, renderItem, options.width, options.containerWidth]);
-  return memoList;
+    let restVirtualList: ReactNode[] = [];
+    for (let i = startIdx, j = 0; i <= endIdx; i++, j++) {
+      restVirtualList.push(
+        renderItem({
+          origin: originList[i],
+          left: startDomLeft + options.width * j,
+          idx: i,
+        }),
+      );
+    }
+    return restVirtualList;
+  }, [originList, renderItem, options.width, options.left, options.containerWidth]);
 }
